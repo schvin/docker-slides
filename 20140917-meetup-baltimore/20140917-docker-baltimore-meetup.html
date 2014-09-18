@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="remark,remarkjs,markdown,slideshow,presentation" />
     <meta name="description" content="A simple, in-browser, markdown-driven slideshow tool." />
-    <title>Docker DC</title>
+    <title>Docker Baltimore</title>
     <style type="text/css">
       @import url(http://fonts.googleapis.com/css?family=Droid+Serif);
       @import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
@@ -125,17 +125,11 @@ name: inverse
 layout: true
 ---
 class: center, middle, inverse
-#Docker DC
-[23 jan 2014]
+#Docker Baltimore
+[17 sep 2014]
 ---
 #administrative
-* thanks, Eli and Industry Dive for putting us up
-
-* meetup timing (inadvertent overlap w/ OpenStack meetup)
-
-* meetup frequency
-
-* Docker swag inbound (your turn to talk next)
+* thanks for organizing this (large!) group and reaching out!
 ---
 #docker?
 * how does it fit amongst existing virtualization tech?
@@ -148,7 +142,7 @@ class: center, middle, inverse
 
 ---
 #capabilities
-* high-level runtime for LXC - linux containers
+* high-level runtime for lxc, libcontainer, etc.
 
 * lightweight, functional
 
@@ -199,7 +193,7 @@ class: center, middle, inverse
 #image creation vs config management
 * a popular devops pattern currently is to blow out vanilla images and install and configure apps on them via chef/puppet/salt
 
-* no need for iterative tests/checks from puppet/etc to run over the box repeatedly
+* no need for iterative tests/checks from puppet/salt/chef/etc to run over the box repeatedly
 
 * with ease of image creation, it can be faster to just keep images up to date and blow those down, depends highly on use case, and/or quantity of images
 
@@ -214,21 +208,21 @@ class: center, middle, inverse
 
 * everything is natted back out - iptables is method to limit traffic in a granular fashion
 
-* perhaps ipv6 will be a nice way out of this nat hell
+* perhaps ipv6 will be a nice way out of nat hell
 ---
 # communication patterns
 * inter-container communication (-icc=false)
 
-* linked containers are a nice recent feature - the exposed TCP/UDP ports are automatically populated in your shell environment 
+* linked containers are an excellent feature - the exposed TCP/UDP ports are automatically populated in your shell environment 
 
 * limited to the local host, without crazy iptables magic on your own (also no links for environment variable propagation)
 
-* ambassador containers help you not hard code things in containers
+* platforms growing to address this from a higher standpoint (service discovery, aggregation, etc)
 ---
 # security considerations
 * namespaces isolate containers from seeing each other and/or the host processes
 
-* cgroups can be leveraged to limit memory/cpu/io and some syscalls by container - not as comprehensive as solaris zones and dtrace, but a good direction
+* cgroups can be leveraged to limit memory/cpu/io and some syscalls by container - not as comprehensive as solaris zones and dtrace, but advancing quickly
 
 * legacy monitoring/security tools often don't understand these new layers, don't leave ops in the dark
 ---
@@ -236,10 +230,11 @@ class: center, middle, inverse
 * for permanent containers, consider isolating the container filesystems so that one container does not blow up others (/var/lib/docker)
 ---
 # things to check out
-1. docker documentation is quite good! http://docs.docker.io
-1. docker index for popular containers and ideas: https://index.docker.io
+1. docker documentation is quite good! http://docs.docker.com
+1. docker index for popular containers and ideas: https://hub.docker.com
 1. Shipyard - docker management, nice web UI
 1. CoreOS - minimal Linux OS made for running containers, with builtin clustering and service discovery
+1. Project Atomic - minimal distribution by Red Hat, nice graphs and overall management capabilities
 1. PAAS/orchestration layers: deis, flynn
 1. SAAS playground: wharf (h/t @cglewis)
 ---
